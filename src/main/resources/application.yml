@@ -1,0 +1,3 @@
+#config application spring-boot
+server:
+  port: 8082
