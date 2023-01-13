@@ -3,6 +3,7 @@ package org.arkham.examples.configure.mdb1.service;
 import org.arkham.examples.configure.mdb1.model.AuditLog;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Ing. Jose Antonio Hernandez
@@ -15,7 +16,7 @@ public interface IAuditLogService {
      * @param auditLog
      * @return
      */
-    AuditLog saveAuditLog(AuditLog auditLog);
+    Optional<AuditLog> saveAuditLog(AuditLog auditLog);
 
     /**
      *

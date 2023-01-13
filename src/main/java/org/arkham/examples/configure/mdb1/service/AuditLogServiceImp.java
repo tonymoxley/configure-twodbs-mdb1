@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Ing. Jose Antonio Hernandez
@@ -24,8 +25,14 @@ public class AuditLogServiceImp implements IAuditLogService {
     }
 
     @Override
-    public AuditLog saveAuditLog(AuditLog auditLog) {
-        return this.repository.save(auditLog);
+    public Optional<AuditLog> saveAuditLog(AuditLog auditLog) {
+        final AuditLog saveLog = repository.save(auditLog);
+        if (saveLog != null) {
+            log.info("inserted record: {}", saveLog);
+        } else {
+            log.error("error saving the operation log");
+        }
+        return Optional.of(saveLog);
     }
 
     @Override

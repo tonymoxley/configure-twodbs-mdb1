@@ -1,6 +1,9 @@
 package org.arkham.examples.configure.mdb1.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,9 +13,11 @@ import java.time.LocalDateTime;
  * @author Ing. Jose Antonio Hernandez
  * @version 1.0
  */
-@Data
 @Entity
 @Table(name = "TB01_AUDIT")
+@Data @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuditLog implements Serializable {
 
     @Id
@@ -29,7 +34,10 @@ public class AuditLog implements Serializable {
     @Column(name = "USER_NAME")
     private String userName;
 
+    @Builder.Default
     @Column(name = "DATE_OPERATION")
-    private LocalDateTime dateOperation;
+    private LocalDateTime dateOperation = LocalDateTime.now();
 
+    @Column(name = "STATUS_OPERATION")
+    private String statusOperation;
 }
